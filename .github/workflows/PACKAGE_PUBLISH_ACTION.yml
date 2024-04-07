@@ -51,7 +51,7 @@ jobs:
             script: |
               const pullRequestLink = context.payload.pull_request.html_url ?? context.payload.pull_request._links.html.href;
               const pullRequestTitle = context.payload.pull_request.title;
-              const repositoryName = context.payload.pull_request.auto.repo.name;
+              const repositoryName = context.payload.pull_request.base.repo.name;
               core.setOutput('pullRequestLink', JSON.stringify(pullRequestLink));
               core.setOutput('pullRequestTitle', JSON.stringify(pullRequestTitle));
               core.setOutput('repositoryName', JSON.stringify(repositoryName));
