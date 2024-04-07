@@ -34,7 +34,7 @@ jobs:
         run: npm run build
 
       - name: version patch    
-        run: npm version patch -m "Upgrade to %s due to a new release"
+        run: npm version patch
 
       - name: Push changes
         run: git push origin HEAD:${{ github.ref }} && git push origin --tags
