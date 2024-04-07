@@ -15,6 +15,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: set git user
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - name: setup git authentication
+        run: |
+          git remote set-url origin https://${{ secrets.GH_PACKAGE_PUBLISH_TOKEN }}@github.com/${{ github.repository }}.git
+
+      - name: install dependencies
+        run: npm install
+
       - name: build tsc with clean
         run: npm run build
 
@@ -23,6 +35,8 @@ jobs:
 
       - name: publish
         run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGE_PUBLISH_TOKEN }}
 
       - name: Check pr merged
         id: check_pr_merged
