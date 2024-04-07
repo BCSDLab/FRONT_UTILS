@@ -33,10 +33,10 @@ jobs:
       - name: build tsc with clean
         run: npm run build
 
-      - name: Commit build artifacts
+      - name: Commit build artifacts and changes
         run: |
-          git add dist
-          git commit -m "Build artifacts" || true
+          git add .
+          git commit -m "Prepare release" || true
 
       - name: version patch    
         run: npm version patch
