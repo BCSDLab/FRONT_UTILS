@@ -11,6 +11,9 @@ jobs:
   check-pr-merged:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -22,7 +25,7 @@ jobs:
 
       - name: setup git authentication
         run: |
-          git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git remote set-url origin https://github.com/${{ github.repository }}.git
 
       - name: install dependencies
         run: npm install
