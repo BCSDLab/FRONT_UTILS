@@ -1,22 +1,20 @@
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 # For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
 
-name: package-publish-action
+name: package publish action
 
 on:
   pull_request:
     types: closed
 
 jobs:
-  check_pr_merged:
+  check-pr-merged:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
+
       - name: tsc
         run: tsc
 
@@ -26,18 +24,18 @@ jobs:
       - name: publish
         run: npm publish
 
-      - name: Check PR Merged
-          id: check_pr_merged
-          uses: actions/github-script@v7
-          with:
+      - name: Check pr merged
+        id: check_pr_merged
+        uses: actions/github-script@v7
+        with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
             script: |
-              const prUrl = context.payload.pull_request.html_url ?? context.payload.pull_request._links.html.href;
-              const prTitle = context.payload.pull_request.title;
+              const pullRequestLink = context.payload.pull_request.html_url ?? context.payload.pull_request._links.html.href;
+              const pullRequestTitle = context.payload.pull_request.title;
               const repositoryName = context.payload.pull_request.auto.repo.name;
-              core.setOutput('pullRequestLink', JSON.stringify(prUrl));
-              core.setOutput('pullRequestTitle', JSON.stringify(prTitle));
-              core.setOutput('pullRequestTitle', JSON.stringify(repositoryName));
+              core.setOutput('pullRequestLink', JSON.stringify(pullRequestLink));
+              core.setOutput('pullRequestTitle', JSON.stringify(pullRequestTitle));
+              core.setOutput('repositoryName', JSON.stringify(repositoryName));
 
       - name: Send Slack Trigger
         run: |
