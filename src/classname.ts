@@ -9,4 +9,4 @@ function cn(classes: Classname) {
     .join(' ');
 }
 
-export { cn };
+export default cn;
