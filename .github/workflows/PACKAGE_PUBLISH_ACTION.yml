@@ -22,7 +22,7 @@ jobs:
 
       - name: setup git authentication
         run: |
-          git remote set-url origin https://${{ secrets.GH_PACKAGE_PUBLISH_TOKEN }}@github.com/${{ github.repository }}.git
+          git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
       - name: install dependencies
         run: npm install
@@ -36,7 +36,7 @@ jobs:
       - name: publish
         run: npm publish --access=public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGE_PUBLISH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check pr merged
         id: check_pr_merged
