@@ -1,3 +1,1 @@
-import cn from "./src/classname";
-
-export default { cn };
+export * from './src/classname';
