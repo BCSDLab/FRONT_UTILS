@@ -6,7 +6,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc --build --clean"
   },
   "browserslist": {
     "production": [

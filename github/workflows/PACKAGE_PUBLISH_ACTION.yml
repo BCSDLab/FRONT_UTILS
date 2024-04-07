@@ -15,8 +15,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: tsc
-        run: tsc
+      - name: build tsc with clean
+        run: npm run build
 
       - name: version patch    
         run: npm version patch
