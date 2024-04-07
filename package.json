@@ -1,6 +1,6 @@
 {
   "name": "@bcsdlab/utils",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/index.js",
   "repository": "https://github.com/BCSDLab/FRONT_UTILS_LIBRARY.git",
   "license": "MIT",
