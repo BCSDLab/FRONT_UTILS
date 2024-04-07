@@ -34,7 +34,12 @@ jobs:
         run: npm run build
 
       - name: version patch    
-        run: npm version patch
+        run: npm version patch -m "Upgrade to %s due to a new release"
+
+      - name: Push changes
+        run: git push origin HEAD:${{ github.ref }} && git push origin --tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check & Publish utils package
         uses: JS-DevTools/npm-publish@v1
@@ -63,5 +68,6 @@ jobs:
           -d '{
                 "pullRequestLink": ${{ steps.check_pr_merged.outputs.pullRequestLink }},
                 "pullRequestTitle": ${{steps.check_pr_merged.outputs.pullRequestTitle }},
-                "repositoryName": ${{steps.check_pr_merged.outputs.repositoryName }}
+                "repositoryName": ${{steps.check_pr_merged.outputs.repositoryName }},
+                "version": ${{ steps.utils.outputs.version }}
               }'
