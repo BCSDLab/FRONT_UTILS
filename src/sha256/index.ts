@@ -1,3 +1,4 @@
+/** sha256 암호화를 거쳐 해싱된 값을 제공합니다. */
 export async function sha256(message: string) {
   // encode as UTF-8
   const msgBuffer = new TextEncoder().encode(message);

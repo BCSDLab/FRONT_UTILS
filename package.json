@@ -2,20 +2,41 @@
   "name": "@bcsdlab/utils",
   "version": "0.0.11",
   "main": "dist/index.js",
-  "repository": "https://github.com/BCSDLab/FRONT_UTILS_LIBRARY.git",
-  "license": "MIT",
+  "description": "bcsdlab 프론트엔드 유틸 모음입니다.",
   "type": "module",
+  "license": "MIT",
   "scripts": {
-    "build": "tsc --build --clean && tsc"
+    "build": "yarn clean && yarn build:tsc && yarn build:js",
+    "build:tsc": "yarn tsc --emitDeclarationOnly",
+    "build:js": "node build.js",
+    "clean": "rm -rf dist"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BCSDLab/FRONT_UTILS_LIBRARY.git"
+  },
+  "keywords": [
+    "frontend",
+    "utils",
+    "bcsdlab"
+  ],
+  "bugs": {
+    "url": "https://github.com/BCSDLab/FRONT_UTILS_LIBRARY/issues"
+  },
+  "homepage": "https://github.com/BCSDLab/FRONT_UTILS_LIBRARY#readme",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.cjs"
     }
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "devDependencies": {
+    "esbuild": "^0.20.2",
     "typescript": "^5.4.4"
   }
 }
