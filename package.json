@@ -1,6 +1,6 @@
 {
   "name": "@bcsdlab/utils",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "main": "dist/index.js",
   "description": "bcsdlab 프론트엔드 유틸 모음입니다.",
   "type": "module",
