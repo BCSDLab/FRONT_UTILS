@@ -7,10 +7,6 @@ var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
@@ -19,7 +15,6 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
-var __reExport = (target, mod, secondTarget) => (__copyProps(target, mod, "default"), secondTarget && __copyProps(secondTarget, mod, "default"));
 var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
@@ -179,8 +174,8 @@ var require_fillInJosa = __commonJS({
       return str.replace(
         /* +++(___ ____ ____)#{---------} */
         /(\S+(?:\([^)]*\))?)#\{([^}]+)\}/g,
-        function(_, noun, josa) {
-          return noun + (0, _josaPicker.get)(josa.trim())(noun);
+        function(_, noun, josa2) {
+          return noun + (0, _josaPicker.get)(josa2.trim())(noun);
         }
       );
     };
@@ -197,14 +192,14 @@ var require_util = __commonJS({
     });
     exports.makeJosaify = exports.getJosaPicker = void 0;
     var _josaPicker = require_josaPicker();
-    var makeJosaify = function makeJosaify2(josa) {
+    var makeJosaify2 = function makeJosaify3(josa2) {
       return function(word) {
-        return word + (0, _josaPicker.get)(josa)(word);
+        return word + (0, _josaPicker.get)(josa2)(word);
       };
     };
-    var getJosaPicker = _josaPicker.get;
-    exports.getJosaPicker = getJosaPicker;
-    exports.makeJosaify = makeJosaify;
+    var getJosaPicker2 = _josaPicker.get;
+    exports.getJosaPicker = getJosaPicker2;
+    exports.makeJosaify = makeJosaify2;
   }
 });
 
@@ -228,13 +223,6 @@ var require_dist2 = __commonJS({
   }
 });
 
-// src/index.ts
-var src_exports = {};
-__export(src_exports, {
-  cn: () => cn,
-  sha256: () => sha256
-});
-
 // src/cn/index.ts
 function cn(classes) {
   return Object.entries(classes).filter(([, value]) => value).map(([key]) => key).join(" ");
@@ -249,10 +237,16 @@ async function sha256(message) {
   return hashHex;
 }
 
-// src/index.ts
-__reExport(src_exports, __toESM(require_dist2(), 1));
+// src/josa/index.ts
+var import_josa = __toESM(require_dist2(), 1);
+var export_getJosaPicker = import_josa.getJosaPicker;
+var export_josa = import_josa.josa;
+var export_makeJosaify = import_josa.makeJosaify;
 export {
   cn,
+  export_getJosaPicker as getJosaPicker,
+  export_josa as josa,
+  export_makeJosaify as makeJosaify,
   sha256
 };
 //# sourceMappingURL=index.js.map
